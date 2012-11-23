@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/12/2010 06:47:57 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="almacen.Producto" table="producto" catalog="almacen">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="idProducto" />
+            <generator class="identity" />
+        </id>
+        <property name="codProducto" type="string">
+            <column name="codProducto" length="50" />
+        </property>
+        <property name="presentacion" type="string">
+            <column name="presentacion" length="50" />
+        </property>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" />
+        </property>
+        <property name="costo" type="java.lang.Double">
+            <column name="costo" precision="22" scale="0" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <set name="salidas" inverse="true">
+            <key>
+                <column name="codProducto" />
+            </key>
+            <one-to-many class="almacen.Salida" />
+        </set>
+        <set name="ingresos" inverse="true">
+            <key>
+                <column name="codProducto" />
+            </key>
+            <one-to-many class="almacen.Ingreso" />
+        </set>
+    </class>
+</hibernate-mapping>
